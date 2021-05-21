@@ -57,6 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\MoveLeft.cs" />
+    <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\ObstacleBehavior.cs" />
+    <Compile Include="Assets\Scripts\StreetBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Stuffs\_Source_Files\Materials\UnlitVertexColour_Alpha.shader" />

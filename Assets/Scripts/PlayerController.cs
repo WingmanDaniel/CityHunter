@@ -8,9 +8,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private Animator playerAnimator;
-    private float jumpStrength  = 6.0f;
-    private float doubleJumpStrength  = 2.0f;
+    private float jumpStrength  = 7.0f;
+    private float doubleJumpStrength = 3.0f;
     private bool isJumping = false;
+    private bool isDoubleJumping = false;
     private float doulePressRate = 0.3f;
     private float jumpStartTime = 0;
     private float jumpSpeedAni = 0.8f;
@@ -40,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (isJumping)
+            if (isJumping && !isDoubleJumping)
             {
                 Debug.Log(Time.time - jumpStartTime);
                 if (Time.time - jumpStartTime <= doulePressRate)
@@ -48,9 +49,10 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Double Space Input");
                     playerRb.AddForce(Vector3.up * doubleJumpStrength, ForceMode.Impulse);
                     playerAnimator.speed = doubleJumPSpeedAni;
+                    isDoubleJumping = true;
                 }
             }
-            else
+            else if(!isJumping)
             {
                 Debug.Log("Space Input");
                 playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Street") && isJumping)
         {
             isJumping = false;
+            isDoubleJumping = false;
             //repplay the dirt splatter particle;
             dirtSplatter.Play();
             playerAnimator.speed = GetRunningSpeed();
