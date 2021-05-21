@@ -320,11 +320,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
-"Assets/Scripts/MoveLeft.cs"
-"Assets/Scripts/ObstacleBehavior.cs"
-"Assets/Scripts/PlayerController.cs"
-"Assets/Scripts/SpawnManager.cs"
-"Assets/Scripts/StreetBehavior.cs"
+"Assets/Scripts/Backgroud/BackgroundBehavior.cs"
+"Assets/Scripts/NoramalBehavior/MoveLeft.cs"
+"Assets/Scripts/NoramalBehavior/SpawnManager.cs"
+"Assets/Scripts/Obstacles/ObstacleBehavior.cs"
+"Assets/Scripts/Player/PlayerController.cs"
+"Assets/Scripts/Street/StreetBehavior.cs"
 -langversion:8.0
 
 /deterministic

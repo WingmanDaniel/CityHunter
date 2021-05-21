@@ -56,11 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\MoveLeft.cs" />
-    <Compile Include="Assets\Scripts\SpawnManager.cs" />
-    <Compile Include="Assets\Scripts\ObstacleBehavior.cs" />
-    <Compile Include="Assets\Scripts\StreetBehavior.cs" />
+    <Compile Include="Assets\Scripts\Obstacles\ObstacleBehavior.cs" />
+    <Compile Include="Assets\Scripts\Street\StreetBehavior.cs" />
+    <Compile Include="Assets\Scripts\NoramalBehavior\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\NoramalBehavior\MoveLeft.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Backgroud\BackgroundBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Stuffs\_Source_Files\Materials\UnlitVertexColour_Alpha.shader" />
