@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private Animator playerAnimator;
-    private float jumpStrength  = 7.0f;
+    private float jumpStrength = 7.0f;
     private float doubleJumpStrength = 3.0f;
     private bool isJumping = false;
     private bool isDoubleJumping = false;
@@ -17,23 +17,28 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeedAni = 0.8f;
     private float doubleJumPSpeedAni = 0.5f;
     private float runningSpeedAni = 1.0f;
-    private bool isDashMode = false;
-    private float dashSpeedRate = 2.0f;
 
+
+    private GameManager gameManagerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
         playerAnimator = GetComponent<Animator>();
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
         dirtSplatter.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        JumpControl();
-        SpeedingControl();
+        if (gameManagerScript.GameInProgress())
+        {
+            JumpControl();
+            SpeedingControl();
+        }
+
     }
 
     // jumnp control by space key input
@@ -52,7 +57,7 @@ public class PlayerController : MonoBehaviour
                     isDoubleJumping = true;
                 }
             }
-            else if(!isJumping)
+            else if (!isJumping)
             {
                 Debug.Log("Space Input");
                 playerRb.AddForce(Vector3.up * jumpStrength, ForceMode.Impulse);
@@ -76,30 +81,44 @@ public class PlayerController : MonoBehaviour
         {
             if (SpeedingAvaliableCheck())
             {
-                isDashMode = true;
+                gameManagerScript.isDashMode = true;
                 playerAnimator.speed = GetRunningSpeed();
             }
         }
-        if(Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.RightArrow))
         {
-            isDashMode = false;
+            gameManagerScript.isDashMode = false;
             playerAnimator.speed = GetRunningSpeed();
         }
     }
 
     private bool SpeedingAvaliableCheck()
     {
-        return !isJumping && !isDashMode;
+        return !isJumping && !gameManagerScript.isDashMode;
     }
 
     private float GetRunningSpeed()
     {
-        return  (isDashMode ? runningSpeedAni * dashSpeedRate : runningSpeedAni);
+        return (gameManagerScript.isDashMode ? runningSpeedAni * gameManagerScript.dashSpeedRate: runningSpeedAni);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Street") && isJumping)
+        if (collision.gameObject.CompareTag("Street") && isJumping)
+        {
+            RecoverAfterJump();
+        }
+
+        if (collision.gameObject.CompareTag("Obstacle") && !gameManagerScript.isGameOver)
+        {
+            GameOver();
+        }
+
+    }
+
+    private void RecoverAfterJump()
+    {
+        if (gameManagerScript.GameInProgress())
         {
             isJumping = false;
             isDoubleJumping = false;
@@ -107,6 +126,16 @@ public class PlayerController : MonoBehaviour
             dirtSplatter.Play();
             playerAnimator.speed = GetRunningSpeed();
         }
+
+    }
+
+    private void GameOver()
+    {
+        gameManagerScript.isGameOver = true;
+        dirtSplatter.Stop();
+        playerAnimator.SetBool("Death_b", true);
+        playerAnimator.SetInteger("DeathType_int", 1);
+        Debug.Log("Game Over");
     }
 
 
