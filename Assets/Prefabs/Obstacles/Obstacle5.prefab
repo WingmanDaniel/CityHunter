@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8058630920644929462}
   - component: {fileID: 4703261168514454523}
+  - component: {fileID: 3692529526312810436}
   m_Layer: 0
   m_Name: Obstacle5
   m_TagString: Obstacle
@@ -43,6 +44,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76ffd9be79af84745acef38ac0c71d6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3692529526312810436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8058630920644929457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a7bdd80250c1e045a19f148d34d12f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4403529357995133680

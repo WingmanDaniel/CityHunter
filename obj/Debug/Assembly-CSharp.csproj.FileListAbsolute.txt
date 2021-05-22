@@ -1,0 +1,2 @@
+C:\Users\YangD\OneDrive\Documents\GitHub\Unity\Learnings\Create with Code\Personal Practice\CityHunter\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\YangD\OneDrive\Documents\GitHub\Unity\Learnings\Create with Code\Personal Practice\CityHunter\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
