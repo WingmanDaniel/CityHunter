@@ -109,9 +109,13 @@ public class PlayerController : MonoBehaviour
             RecoverAfterJump();
         }
 
-        if (collision.gameObject.CompareTag("Obstacle") && !gameManagerScript.isGameOver)
+        if (collision.gameObject.CompareTag("Obstacle") && gameManagerScript.GameInProgress())
         {
-            GameOver();
+            // if the hero hitts the front of the obstacle, lay backword, otherwise, lay forward. 
+            if (collision.gameObject.transform.position.z >= transform.position.z)
+                GameOver(1);
+            else
+                GameOver(2);
         }
 
     }
@@ -122,19 +126,19 @@ public class PlayerController : MonoBehaviour
         {
             isJumping = false;
             isDoubleJumping = false;
-            //repplay the dirt splatter particle;
+            //replay the dirt splatter particle;
             dirtSplatter.Play();
             playerAnimator.speed = GetRunningSpeed();
         }
 
     }
 
-    private void GameOver()
+    private void GameOver(int type)
     {
-        gameManagerScript.isGameOver = true;
+        gameManagerScript.GameOverBehavior();
         dirtSplatter.Stop();
         playerAnimator.SetBool("Death_b", true);
-        playerAnimator.SetInteger("DeathType_int", 1);
+        playerAnimator.SetInteger("DeathType_int", type);
         Debug.Log("Game Over");
     }
 
